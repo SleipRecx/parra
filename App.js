@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, ScrollView, Navigator } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Navigator, StatusBar } from 'react-native'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import { Section, TableView } from 'react-native-tableview-simple'
 import FeedTable from './src/components/FeedTable'
@@ -37,6 +37,10 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
+        <StatusBar
+          backgroundColor="white"
+          barStyle="dark-content"
+        />
         <ScrollableTabView
           style={{ paddingTop: 20 }}
           tabBarActiveTextColor="#c4972b"
