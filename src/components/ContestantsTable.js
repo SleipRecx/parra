@@ -13,7 +13,7 @@ export default class ContestantsTable extends React.Component {
     this.listeners = []
     this.state = {
       contestants: Store.getContestants(),
-      refreshing: true,
+      refreshing: false,
     }
     Actions.fetchContestants()
   }

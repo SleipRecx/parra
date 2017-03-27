@@ -11,3 +11,10 @@ export function fetchEvents() {
     type: 'FETCH_EVENTS'
   })
 }
+
+export function fetchLeagues(idArray) {
+  dispatcher.dispatch({
+    type: 'FETCH_LEAGUES',
+    idArray,
+  })
+}

@@ -8,10 +8,21 @@ class Store extends EventEmitter {
   constructor(){
     super()
     this.contestants = {}
+    this.leagues = []
+    this.events = []
+    this.wrongCodes = []
   }
 
   getContestants() {
     return this.contestants.sort((a, b) => b.score - a.score)
+  }
+
+  getLeagues() {
+    return this.leagues
+  }
+
+  getWrongCodes() {
+    return this.wrongCodes
   }
 
   getEvents() {
@@ -92,6 +103,33 @@ class Store extends EventEmitter {
     })
   }
 
+  fetchLeagues(leagueCodes) {
+    this.leagues = []
+    if (leagueCodes.length === 0) this.emit('newLeagues')
+    const headers = new Headers()
+    headers.append('authorization', apiKey)
+    const init = { method: 'GET', headers }
+    leagueCodes.forEach(code => {
+      if(!this.leagues.filter(e => e.code === code).length > 0){
+        const request = new Request('https://api.fantasyparadise.no/o/league/' + code, init)
+        fetch(request)
+        .then(resp => {
+          if (resp.status === 200) return resp.json()
+          return null
+        }).then(league => {
+            if (league) {
+              this.leagues.push(league)
+              this.emit('newLeagues')
+            }
+            else{
+              this.wrongCodes.push(code)
+              this.emit('wrongCode')
+            }
+          })
+      }
+    })
+  }
+
 
   handleActions(action){
     switch (action.type) {
@@ -101,6 +139,10 @@ class Store extends EventEmitter {
       }
       case 'FETCH_EVENTS': {
         this.fetchEvents()
+        break
+      }
+      case 'FETCH_LEAGUES': {
+        this.fetchLeagues(action.idArray)
         break
       }
       default: {
