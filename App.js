@@ -42,13 +42,15 @@ export default class App extends React.Component {
           barStyle="dark-content"
         />
         <ScrollableTabView
+          scrollWithoutAnimation
+          tabBarTextStyle={{fontWeight: 'normal'}}
           style={{ paddingTop: 20 }}
           tabBarActiveTextColor="#c4972b"
-          tabBarUnderlineStyle={{backgroundColor: '#c4972b', height: 3}}>
-            <FeedTable tabLabel="Feed" />
+          tabBarUnderlineStyle={{backgroundColor: '#c4972b', height: 2}}>
+            <FeedTable tabLabel="Oversikt" />
             <ContestantsTable tabLabel="Deltagere" />
             <Navigator
-              tabLabel="Liager"
+              tabLabel="Ligaer"
               initialRoute={{ name: 'league' }}
               renderScene={this.renderScene}
               configureScene={this.configureScene}

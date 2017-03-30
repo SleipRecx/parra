@@ -52,7 +52,7 @@ export default class FeedTable extends React.Component {
   }
 
   render() {
-    const sections = this.state.events.slice(0, 2).map(week =>{
+    const sections = this.state.events.slice(0, 4).map(week =>{
       const cells = week.map(e => (
         <FeedCell key={e.id} event={e} />
       ))

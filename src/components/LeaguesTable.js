@@ -97,19 +97,21 @@ export default class LeaguesTable extends React.Component {
         <ScrollView style={{ backgroundColor: '#EFEFF4' }}>
         <TableView>
           <Section header="Legg til en ny liga">
-            <View style={{ padding: 5, paddingRight: 15, paddingLeft: 15, backgroundColor: 'white', flexDirection:'row', flexWrap:'wrap' }}>
+            <View style={{ flexDirection:'row', flexWrap:'wrap' }}>
               <TextInput
-              style={{flex: 1, backgroundColor: 'white'}}
+              style={{flex: 1, backgroundColor: 'white', paddingLeft: 15}}
               onChangeText={(text) => this.setState({ input: text })}
               placeholder="Ligakode"
               value={this.state.input}
               />
+            <View style={{ backgroundColor: 'white', paddingRight: 15 }}>
               <Button
                 onPress={this.addLeaguePressed}
                 title="Legg til"
                 color="#c4972b"
                 accessibilityLabel="Learn more about this purple button"
                 />
+            </View>
             </View>
           </Section>
           <Section header="Dine ligaer">
